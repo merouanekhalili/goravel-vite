@@ -15,7 +15,7 @@ Integrate Vite seamlessly into your Goravel application for modern frontend asse
 1.  **Require the package:**
 
     ```bash
-    go get github.com/merouanekhalili/goravel-vite
+    go get github.com/merouanekhalili/goravel-vite@v0.0.2
     ```
 
 2.  **Register the Service Provider:**
@@ -110,8 +110,14 @@ Integrate Vite seamlessly into your Goravel application for modern frontend asse
     }
 
     func (receiver *AppServiceProvider) Boot(app foundation.Application) {
-        // Share Vite assets with all views using the key "vite"
-        facades.View().Share("vite", vitefacades.Vite().Assets())
+        // Retrieve the Vite instance from the facade
+        viteInstance, err := vitefacades.Vite()
+        if err != nil {
+            facades.Log().Error("Failed to get Vite instance", "error", err)
+        } else {
+             // Share Vite assets with all views using the key "vite"
+            facades.View().Share("vite", viteInstance.Assets())
+        }
 
     	// Register other boot logic
     }
