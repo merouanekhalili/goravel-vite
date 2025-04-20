@@ -1,0 +1,35 @@
+import tailwindcss from '@tailwindcss/vite';
+import react from '@vitejs/plugin-react';
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+    plugins: [
+        react(),
+        tailwindcss(),
+    ],
+    publicDir: './public',
+    build: {
+        outDir: 'public/build',
+        emptyOutDir: true,
+        manifest: true,
+        rollupOptions: {
+            input: ['./resources/css/app.css', './resources/js/main.tsx'],
+        },
+    },
+    esbuild: {
+        jsx: 'automatic',
+    },
+    server: {
+        port: 5173,
+        host: 'localhost',
+    },
+    resolve: {
+        alias: [
+            {
+                find: '@',
+                replacement: fileURLToPath(new URL('./resources/js', import.meta.url)),
+            },
+        ],
+    },
+});
