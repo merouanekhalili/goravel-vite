@@ -28,7 +28,7 @@ func (receiver *ServiceProvider) Boot(app foundation.Application) {
 	config := app.MakeConfig()
 	route.Static(config.GetString("vite.base_url", "/static"), path.Base(config.GetString("vite.assets_path", "public/build")))
 
-	app.Publishes("./packages/vite", map[string]string{
+	app.Publishes("github.com/merouanekhalili/goravel-vite", map[string]string{
 		"config/vite.go":                       app.ConfigPath("vite.go"),
 		"templates/.prettierignore.txt":        path.Base(".prettierignore"),
 		"templates/.prettierrc.txt":            path.Base(".prettierrc"),
@@ -43,7 +43,7 @@ func (receiver *ServiceProvider) Boot(app foundation.Application) {
 		"templates/react/eslint.config.js.txt": path.Base("eslint.config.js"),
 	}, "react")
 
-	app.Publishes("./packages/vite", map[string]string{
+	app.Publishes("github.com/merouanekhalili/goravel-vite", map[string]string{
 		"config/vite.go":                     app.ConfigPath("vite.go"),
 		"templates/.prettierignore.txt":      path.Base(".prettierignore"),
 		"templates/.prettierrc.txt":          path.Base(".prettierrc"),
