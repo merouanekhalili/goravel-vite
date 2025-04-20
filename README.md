@@ -9,6 +9,7 @@ Integrate Vite seamlessly into your Goravel application for modern frontend asse
 - Support for React (including Fast Refresh) and Vue.
 - Publishable configuration and frontend scaffolding.
 - Configurable via environment variables.
+- Automatically declares a static route in the `ServiceProvider` to serve built assets in production (configurable, defaults to `/static` mapped to `public/build`).
 
 ## Installation
 
